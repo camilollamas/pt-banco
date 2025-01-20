@@ -1,0 +1,27 @@
+services:
+  # backend-nestjs:
+  #   image: node:18
+  #   container_name: backend-nestjs
+  #   working_dir: /app
+  #   volumes:
+  #     - ../backend-banco:/app
+  #     # - /app/node_modules
+  #   ports:
+  #     - "3000:3000"
+  #   command: sh -c "npm cache clean --force && npm install --legacy-peer-deps && npm run start:dev"
+  #   environment:
+  #     - NODE_ENV=development
+  #     - PORT=3000
+  #     - JWT_SECRET=secret
+  #     - URI_MONGO_BANKING_SERVICE=mongodb://mongo-bank-service:27017/bank
+  #   depends_on:
+  #     - mongo-bank-service
+
+  mongo-bank-service:
+    image: mongo:5.0.0
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo/bank-service:/data/db
+
