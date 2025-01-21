@@ -79,17 +79,26 @@ export class CreditosService {
     return this.creditoModel.find().exec();
   }
 
-  async findOneByCreditoId(creditoId: string): Promise<Credito> {
+  async findOneByCreditoId(creditoId: string): Promise<Credito | undefined> {
     const credito = await this.creditoModel.findOne({ creditoId: creditoId }).exec();
-    if (!credito) throw new NotFoundException(`Credito con id '${creditoId}' no encontrado`);
+    if (!credito) return;
     return credito;
   }
 
-  async findyByClientData(tipoDocumento: string, numeroDocumento: string): Promise<{ cliente: Cliente, creditos: Credito[] }>  {
+  // async findyByClientData(tipoDocumento: string, numeroDocumento: string): Promise<{ cliente: Cliente, creditos: Credito[] }>  {
+  //   const cliente = await this.clienteModel.findOne({ tipoDocumento, numeroDocumento }).exec();
+  //   if (!cliente) throw new NotFoundException(`Cliente con tipoDocumento '${tipoDocumento}' y numeroDocumento '${numeroDocumento}' no encontrado`);
+  //   const creditos = await this.creditoModel.find({ clienteId: cliente.clienteId }).exec();
+  //   return { cliente, creditos };
+  // }
+
+  async findyByClientData(tipoDocumento: string, numeroDocumento: string): Promise<Credito[]> {
     const cliente = await this.clienteModel.findOne({ tipoDocumento, numeroDocumento }).exec();
-    if (!cliente) throw new NotFoundException(`Cliente con tipoDocumento '${tipoDocumento}' y numeroDocumento '${numeroDocumento}' no encontrado`);
+    if (!cliente) return []
+    
     const creditos = await this.creditoModel.find({ clienteId: cliente.clienteId }).exec();
-    return { cliente, creditos };
+    
+    return creditos;
   }
 
   async update(creditoId: string, updateCreditoDto: UpdateCreditoDto): Promise<Credito> {

@@ -51,7 +51,7 @@ export class CreditosController {
     return this.creditosService.findOneByCreditoId(creditoId);
   }
 
-  @Get(':tipoDocumento/:numeroDocumento')
+  @Get('client/:tipoDocumento/:numeroDocumento')
   @ApiResponse({ status: 200, description: 'Request Successfully', type: Credito })
   @ApiResponse({ status: 400, description: 'Bad Request' })
   @ApiResponse({ status: 404, description: 'Not found ' })

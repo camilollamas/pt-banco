@@ -12,7 +12,7 @@ Este proyecto es una solución completa para la gestión de créditos bancarios,
 
 - **`backend-banco`**: Código fuente del backend desarrollado con NestJS.
 - **`frontend-banco`**: Código fuente del frontend desarrollado con NextJS.
-- **`docker-compose.yml`**: Archivo de configuración para levantar todos los servicios necesarios.
+- **`docker`**: Se encuentra el archivo docker-compose.yaml. Archivo de configuración para levantar todos los servicios necesarios.
 
 ## Requisitos Previos
 
@@ -34,9 +34,10 @@ cd pt-banco
 
 ### 2. Levantar los Servicios con Docker Compose
 
-Ejecuta el siguiente comando para construir y levantar los servicios:
+Ejecuta los siguientes comandos para construir y levantar los servicios:
 
 ```bash
+cd docker
 docker-compose up --build
 ```
 
@@ -75,11 +76,12 @@ http://localhost:3000/login
 - **Usuario:** admin
 - **Contraseña:** admin
 
-### Carga de Registros de Clientes
+### Carga de Registros de Clientes y Creditos de prueba
 Para cargar registros de clientes en la base de datos, realiza una petición `POST` a la siguiente dirección:
 
 ```bash
 POST http://localhost:3000/clientes/cargar
+POST http://localhost:3000/creditos/cargar
 ```
 
 ## Documentación de la API

@@ -68,6 +68,4 @@ export class ClientesService {
     if (!cliente) throw new NotFoundException(`Cliente con documento '${tipoDocumento}' '${numeroDocumento}' no encontrado`);
     return cliente;
   }
-
-
 }
