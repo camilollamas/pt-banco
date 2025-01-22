@@ -69,20 +69,13 @@ http://localhost:3001
 Para comenzar a usar la aplicación, puedes iniciar sesión o registrarte accediendo a la siguiente ruta:
 
 ```bash
-http://localhost:3000/login
+http://localhost:3000
 ```
 
-#### Credenciales por Defecto:
+### Credenciales por Defecto:
 - **Usuario:** admin
 - **Contraseña:** admin
 
-### Carga de Registros de Clientes y Creditos de prueba
-Para cargar registros de clientes en la base de datos, realiza una petición `POST` a la siguiente dirección:
-
-```bash
-POST http://localhost:3000/clientes/cargar
-POST http://localhost:3000/creditos/cargar
-```
 
 ## Documentación de la API
 
