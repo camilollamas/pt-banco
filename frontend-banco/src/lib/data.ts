@@ -10,7 +10,6 @@ export async function fetchFilteredCredits(
   currentPage: number,
 ) {
   noStore();
-  console.log('query', query);
 
   try {
 
@@ -74,8 +73,6 @@ export async function fetchCreditById(id: string) {
       }
     })
 
-    console.log(' fetchCreditById data', data);
-
     const credit = { ...data, monto: data.monto / 100 };
 
     return credit;
@@ -100,6 +97,7 @@ export async function fetchCustomers() {
     })
 
     return customers;
+
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch all customers.');
@@ -126,7 +124,38 @@ export async function fetchFilteredCustomers(
       }
     })
 
+    if(customers.length === 0) {
+      await uploadSeedData();
+    }
+
     return customers;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch customers.');
+  }
+}
+
+async function uploadSeedData() {
+  try {
+
+    const session = await auth();
+
+    if (!session?.user) {
+      throw new Error('Unauthorized')
+    }
+
+    await axios.post(`http://localhost:3000/clientes/cargar`, {}, {
+      headers: {
+        Authorization: `Bearer ${session.user.access_token}`,
+      },
+    });
+
+    await axios.post(`http://localhost:3000/creditos/cargar`, {}, {
+      headers: {
+        Authorization: `Bearer ${session.user.access_token}`,
+      },
+    });
+
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch customers.');

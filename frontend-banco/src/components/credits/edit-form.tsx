@@ -27,10 +27,6 @@ export default function EditCreditForm({
   const updateCreditWithId = updateCredit.bind(null, credit.creditoId);
   const [state, dispatch] = useActionState(updateCreditWithId, initialState);
 
-  useEffect(() => {
-    console.log('Credit:', credit);
-  }, []);
-
   return (
     <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">

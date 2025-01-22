@@ -5,7 +5,14 @@ import { fetchCustomers } from "@/lib/data";
 
 export default async function Page() {
 
-  const customers = await fetchCustomers();
+  let customers: any[] = [];
+
+  try {
+    customers = await fetchCustomers();
+  } catch (error) {
+    console.error('Failed to fetch customers:', error);
+    // Manejar el error de manera adecuada, por ejemplo, redirigir a una página de error
+  }
  
   return (
     <main>

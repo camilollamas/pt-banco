@@ -11,16 +11,16 @@ import { auth, signIn } from '@/auth';
 const CreditSchema = z.object({
   creditoId: z.string(),
   clienteId: z.string({
-    invalid_type_error: 'Please select a customer.',
+    invalid_type_error: 'Por favor seleccione cliente.',
   }),
   fechaDesembolso: z.string(),
   monto: z.coerce
     .number()
-    .gt(0, { message: 'Please enter an amount greater than $0.' }),
+    .gt(0, { message: 'Por favor ingrese un monto mayor a $0.' }),
   plazoMeses: z.number(),
   tasaInteres: z.number(),
   estado: z.enum(['Inactivo', 'Activo'], {
-    invalid_type_error: 'Please select an credit status.',
+    invalid_type_error: 'Por favor seleccione un estado de crédito.',
   }),
 });
 
@@ -53,7 +53,7 @@ export async function createCredit(prevState: State, formData: FormData) {
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing Fields. Failed to Create Credit.',
+      message: 'Campos faltantes. Error al crear crédito.',
     };
   }
 
@@ -97,7 +97,6 @@ export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
-  console.log('formData', formData);
   try {
     await signIn('credentials', Object.fromEntries(formData));
   } catch (error) {
@@ -157,8 +156,6 @@ export async function updateCredit(
 }
 
 export async function deleteCredit(creditId: string) {
-
-  // throw new Error('Failed to Delete Credit');
 
   try {
     const session = await auth();

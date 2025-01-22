@@ -57,6 +57,7 @@ export class ClientesService {
     for (const cliente of clientes) {
       await cliente.save();
     }
+    return clientes;
   }
 
   async findAll() {
