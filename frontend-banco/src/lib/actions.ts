@@ -4,6 +4,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import axios from "axios";
+
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 import { z } from 'zod';
 
 import { auth, signIn } from '@/auth';
@@ -68,7 +70,7 @@ export async function createCredit(prevState: State, formData: FormData) {
       throw new Error('Unauthorized');
     }
 
-    await axios.post(`http://localhost:3000/creditos`, {
+    await axios.post(`${NEXT_PUBLIC_API_URL}/creditos`, {
       clienteId,
       fechaDesembolso,
       monto: amountInCents,
@@ -137,7 +139,7 @@ export async function updateCredit(
       throw new Error('Unauthorized');
     }
 
-    await axios.patch(`http://localhost:3000/creditos/${id}`, {
+    await axios.patch(`${NEXT_PUBLIC_API_URL}/creditos/${id}`, {
       clienteId,
       monto: amountInCents,
       estado,
@@ -164,7 +166,7 @@ export async function deleteCredit(creditId: string) {
       throw new Error('Unauthorized');
     }
 
-    await axios.delete(`http://localhost:3000/creditos/${creditId}`, {
+    await axios.delete(`${NEXT_PUBLIC_API_URL}/creditos/${creditId}`, {
       headers: {
         Authorization: `Bearer ${session.user.access_token}`,
       },

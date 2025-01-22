@@ -7,9 +7,11 @@ import { z } from 'zod';
 import { authConfig } from '@/configs';
 import type { User } from '@/lib/definitions'
 
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 async function getUser(username: string, password: string): Promise<User | undefined> {
   try {
-    const { data } = await axios.post<User>(`http://localhost:3000/auth/login`, { username, password });
+    const { data } = await axios.post<User>(`${NEXT_PUBLIC_API_URL}/auth/login`, { username, password });
     return data;
   } catch (error) {
     console.error('Failed to fetch user:', error);

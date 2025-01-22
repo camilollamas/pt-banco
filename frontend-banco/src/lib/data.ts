@@ -1,5 +1,7 @@
 import { unstable_noStore as noStore } from 'next/cache';
 
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 import axios from 'axios';
 
 import { Client, Credit } from '@/lib/definitions';
@@ -23,7 +25,7 @@ export async function fetchFilteredCredits(
 
     if (type && number) {
 
-      const { data: credits } = await axios.get<Credit[]>(`http://localhost:3000/creditos/client/${type}/${number}`, {
+      const { data: credits } = await axios.get<Credit[]>(`${NEXT_PUBLIC_API_URL}/creditos/client/${type}/${number}`, {
         headers: {
           Authorization: `Bearer ${session?.user.access_token}`
         }
@@ -33,7 +35,7 @@ export async function fetchFilteredCredits(
 
     if (creditId) {
 
-      const { data: credit } = await axios.get<Credit>(`http://localhost:3000/creditos/${creditId}`, {
+      const { data: credit } = await axios.get<Credit>(`${NEXT_PUBLIC_API_URL}/creditos/${creditId}`, {
         headers: {
           Authorization: `Bearer ${session?.user.access_token}`
         }
@@ -43,7 +45,7 @@ export async function fetchFilteredCredits(
 
     }
 
-    const { data: credits } = await axios.get<Credit[]>('http://localhost:3000/creditos', {
+    const { data: credits } = await axios.get<Credit[]>(`${NEXT_PUBLIC_API_URL}/creditos`, {
       headers: {
         Authorization: `Bearer ${session?.user.access_token}`
       }
@@ -67,7 +69,7 @@ export async function fetchCreditById(id: string) {
       throw new Error('Unauthorized')
     }
 
-    const { data } = await axios.get<Credit>(`http://localhost:3000/creditos/${id}`, {
+    const { data } = await axios.get<Credit>(`${NEXT_PUBLIC_API_URL}/creditos/${id}`, {
       headers: {
         Authorization: `Bearer ${session?.user.access_token}`
       }
@@ -90,7 +92,7 @@ export async function fetchCustomers() {
       throw new Error('Unauthorized')
     }
 
-    const { data: customers } = await axios.get<Client[]>('http://localhost:3000/clientes', {
+    const { data: customers } = await axios.get<Client[]>(`${NEXT_PUBLIC_API_URL}/clientes`, {
       headers: {
         Authorization: `Bearer ${session?.user.access_token}`
       }
@@ -118,7 +120,7 @@ export async function fetchFilteredCustomers(
       throw new Error('Unauthorized')
     }
 
-    const { data: customers } = await axios.get<Client[]>('http://localhost:3000/clientes', {
+    const { data: customers } = await axios.get<Client[]>(`${NEXT_PUBLIC_API_URL}/clientes`, {
       headers: {
         Authorization: `Bearer ${session?.user.access_token}`
       }
@@ -144,13 +146,13 @@ async function uploadSeedData() {
       throw new Error('Unauthorized')
     }
 
-    await axios.post(`http://localhost:3000/clientes/cargar`, {}, {
+    await axios.post(`${NEXT_PUBLIC_API_URL}/clientes/cargar`, {}, {
       headers: {
         Authorization: `Bearer ${session.user.access_token}`,
       },
     });
 
-    await axios.post(`http://localhost:3000/creditos/cargar`, {}, {
+    await axios.post(`${NEXT_PUBLIC_API_URL}/creditos/cargar`, {}, {
       headers: {
         Authorization: `Bearer ${session.user.access_token}`,
       },
