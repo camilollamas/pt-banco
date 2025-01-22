@@ -9,7 +9,7 @@ import type { User } from '@/lib/definitions'
 
 async function getUser(username: string, password: string): Promise<User | undefined> {
   try {
-    const { data } = await axios.post<User>('http://localhost:3000/auth/login', { username, password })
+    const { data } = await axios.post<User>(`http://localhost:3000/auth/login`, { username, password });
     return data;
   } catch (error) {
     console.error('Failed to fetch user:', error);
@@ -38,4 +38,5 @@ export const { auth, signIn, signOut } = NextAuth({
       },
     })
   ],
+  trustHost: true,
 });
