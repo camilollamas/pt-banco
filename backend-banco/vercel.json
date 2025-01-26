@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "/creditos/**/*.js": {
-      "maxDuration": 30
-    }
-  }
-}
