@@ -4,5 +4,9 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ]
+  ],
+  "crons": [{
+    "path": "/auth/login",
+    "schedule": "0 10 * * *"
+  }]
 }
