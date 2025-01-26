@@ -5,8 +5,27 @@
       "destination": "/"
     }
   ],
-  "crons": [{
-    "path": "/auth/login",
-    "schedule": "0 10 * * *"
-  }]
+  "routes": [
+    {
+      "src": "/creditos",
+      "methods": ["GET", "POST"],
+      "dest": "/api/creditos"
+    },
+    {
+      "src": "/clientes",
+      "methods": ["GET", "POST"],
+      "dest": "/api/clientes"
+    },
+    {
+      "src": "/auth/login",
+      "methods": ["GET", "POST"],
+      "dest": "/api/auth/login"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/auth/login",
+      "schedule": "0 10 * * *"
+    }
+  ]
 }
