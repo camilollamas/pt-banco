@@ -13,7 +13,7 @@ export class AuthService {
       return {
         id: 1,
         username: 'admin',
-        name: 'Juan Camilo',
+        name: 'Juan Camilo1',
         lastname: 'Llamas',
         email: 'ing.jcllamas@gmail.com',
         roles: ['admin'],
