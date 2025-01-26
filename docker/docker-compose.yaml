@@ -16,8 +16,8 @@ services:
       - URI_MONGO_BANKING_SERVICE=mongodb://mongo-bank-service:27017/bank
     depends_on:
       - mongo-bank-service
-    networks:
-      - my-network
+    # networks:
+    #   - my-network
 
   mongo-bank-service:
     image: mongo:5.0.0
@@ -26,8 +26,8 @@ services:
       - 27017:27017
     volumes:
       - ./mongo/bank-service:/data/db
-    networks:
-      - my-network
+    # networks:
+    #   - my-network
 
   frontend-nextjs:
     image: node:18
@@ -45,8 +45,8 @@ services:
         - NEXT_PUBLIC_API_URL=http://backend-nestjs:3000
     #   - NODE_ENV=development
     #   - PORT=3000
-    networks:
-      - my-network
+    # networks:
+    #   - my-network
 
 networks:
   my-network:
