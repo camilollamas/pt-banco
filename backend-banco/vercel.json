@@ -12,7 +12,7 @@
       "dest": "/api/creditos"
     },
     {
-      "src": "/clientes",
+      "src": "/clientes/",
       "methods": ["GET", "POST"],
       "dest": "/api/clientes"
     },
