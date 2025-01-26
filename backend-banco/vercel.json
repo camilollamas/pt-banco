@@ -7,19 +7,24 @@
   ],
   "routes": [
     {
+      "src": "/",
+      "methods": ["GET", "POST"],
+      "dest": "/"
+    },
+    {
       "src": "/creditos",
       "methods": ["GET", "POST"],
-      "dest": "/api/creditos"
+      "dest": "/creditos"
     },
     {
       "src": "/clientes/",
       "methods": ["GET", "POST"],
-      "dest": "/api/clientes"
+      "dest": "/clientes"
     },
     {
       "src": "/auth/login",
       "methods": ["GET", "POST"],
-      "dest": "/api/auth/login"
+      "dest": "/auth/login"
     }
   ],
   "crons": [
